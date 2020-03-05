@@ -1,0 +1,17 @@
+Package: GBClust
+Type: Package
+Title: Clustering with Gibbs posteriors
+Version: 0.0.1
+Date: 2019-10-30
+Author: Tommaso Rigon
+Maintainer: Tommaso Rigon <tommaso.rigon@gmail.com>
+Description: Clustering with Gibbs posteriors and related functions
+Encoding: UTF-8
+License: GPL-3
+LazyData: TRUE
+Imports: Rcpp (>= 1.0.2), ggplot2, cluster
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 6.1.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

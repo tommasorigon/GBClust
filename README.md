@@ -1,1 +1,1 @@
-# GBClust
+# GibbsClust

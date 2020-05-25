@@ -2,10 +2,10 @@
 % Please edit documentation in R/clustering.R
 \name{Minkowski_gibbs}
 \alias{Minkowski_gibbs}
-\title{K-dissimilarities clustering with uncertainty quantification}
+\title{K-dissimilarities algorithm with uncertainty quantification}
 \usage{
-Minkowski_gibbs(x, k, p, a_lambda, b_lambda, R = 1000, burn_in = 1000,
-  nstart = 10, trace = FALSE)
+Minkowski_gibbs(x, k, p, a_lambda = 0, b_lambda = 0, R = 1000,
+  burn_in = 1000, nstart = 10, trace = FALSE)
 }
 \arguments{
 \item{x}{numeric matrix of of the data}
@@ -14,27 +14,27 @@ Minkowski_gibbs(x, k, p, a_lambda, b_lambda, R = 1000, burn_in = 1000,
 
 \item{p}{Power of the Minkowski distance}
 
-\item{a_lambda}{Hyperparameter of the Gamma prior on the scale parameter}
+\item{a_lambda}{Hyperparameter of the Gamma prior on the scale parameter. The default \code{a_lambda = 0} leads to an improper prior.}
 
-\item{b_lambda}{Hyperparameter of the Gamma prior on on the scale parameter}
+\item{b_lambda}{Hyperparameter of the Gamma prior on on the scale parameter. The default \code{a_lambda = 0} leads to an improper prior.}
 
-\item{R}{Number of MCMC samples after burn-in}
+\item{R}{Number of MCMC samples after burn-in.}
 
-\item{burn_in}{Number of MCMC samples to be discarded as burn-in period}
+\item{burn_in}{Number of MCMC samples to be discarded as burn-in period.}
 
-\item{nstart}{Number of random initializations for the k-means algorithm}
+\item{nstart}{Number of random initializations for the \code{\link{kdiss}} algorithm, used to initialize the MCMC chain.}
 
 \item{trace}{logical: if true, tracing information on the progress of the algorithm is produced.}
 }
 \value{
 \describe{
-  \item{\code{G}}{The letters of the alphabet}
-  \item{\code{lambda}}{A vector of numbers}
-  \item{\code{loss}}{A vector of numbers}
-  \item{\code{G_map}}{A vector of numbers}
-  \item{\code{loss_map}}{A vector of numbers}
+  \item{\code{G}}{Labels of the clusters at each \code{MCMC} iteration.}
+  \item{\code{lambda}}{Numeric vector of the values of \code{lambda} at each MCMC iteration.}
+  \item{\code{loss}}{Numeric vector of the loss function at each MCMC iteration.}
+  \item{\code{G_map}}{Labels of the clusters obtained using \code{\link{kdiss}}, representing the maximum a posteriori.}
+  \item{\code{loss_map}}{Numeric value of the loss function obtained using \code{\link{kdiss}}, representing the maximized loss.}
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-dissimilarities algorithm
+Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see \code{\link{dist}}. This function is complementary to \code{\link{kdiss}}, which may be used to get a point estimate.
 }

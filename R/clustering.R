@@ -8,11 +8,11 @@
 #'@import ggplot2
 #'@useDynLib GBClust
 #'
-#' @param D A n x n numeric matrix with the dissimilarities
-#' @param k_max Maximum number of clusters to be considered
-#' @param nstart Number of random initializations
-#' @param method The graph that has to reported, i.e. \code{elbow} or \code{silhouette}
-#' @return It return a \code{ggplot2} graph of the loss function / average silhouette width, for different values of \code{k}, from 1 up to \code{k_max}.
+#' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
+#' @param k_max Maximum number of clusters to be considered.
+#' @param nstart Number of random initializations.
+#' @param method The graph that will be displayed. Supported options are \code{method="elbow"}, which displays the loss function, or \code{method="silhouette"}. See \code{\link{silhouette}} for details about the latter.
+#' @return It return a \code{\link{ggplot2}} graph of the loss function / average silhouette width, for \code{k=1,...,k_max}.
 #' 
 #' @export
 #' 
@@ -33,26 +33,26 @@ kdiss_select <- function(D, k_max, nstart = 1, method="elbow"){
     sil[k-1]  <- mean(silhouette(fit$cluster,D)[,3])
   }
   if(method=="elbow"){
-    p <- ggplot(data=data.frame(ncluster=c(1,ncluster), loss = loss), aes(x=ncluster,y=loss)) + geom_point() + geom_line() + theme_bw() + xlab("Number of cluster") + ylab("Loss function")
+    p <- ggplot(data=data.frame(ncluster=c(1,ncluster), loss = loss), aes(x=ncluster,y=loss)) + geom_point() + geom_line() + theme_bw() + xlab("Number of clusters") + ylab("Loss function")
   } 
   if(method=="silhouette"){
-    p <- ggplot(data=data.frame(ncluster=ncluster, sil=sil), aes(x=ncluster,y=sil)) + geom_point() + geom_line() + theme_bw() + xlab("Number of cluster") + ylab("Average silhouette width")
+    p <- ggplot(data=data.frame(ncluster=ncluster, sil=sil), aes(x=ncluster,y=sil)) + geom_point() + geom_line() + theme_bw() + xlab("Number of clusters") + ylab("Average silhouette width")
   }
   p 
 }
 
-#' K-dissimilarities clustering
+#' K-dissimilarities algorithm
 #' 
-#' Perform the k-dissimilarities Algorithm described in Rigon, Herring and Dunson (2020).
+#' Perform the k-dissimilarities algorithm described in Rigon, Herring and Dunson (2020).
 #'
-#' @param D A n x n numeric matrix with the dissimilarities
-#' @param k The number of clusters to be considered 
-#' @param nstart Number of random initializations
+#' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
+#' @param k The number of clusters to be considered. See \code{\link{kdiss_select}} for selection criteria.
+#' @param nstart Number of random initializations. 
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced
 #' @return 
 #' \describe{
-#'   \item{\code{cluster}}{The letters of the alphabet}
-#'   \item{\code{loss}}{A vector of numbers}
+#'   \item{\code{cluster}}{Labels of the clusters at convergence}
+#'   \item{\code{loss}}{Numeric value of the loss function at convergence}
 #' }
 #' 
 #' @export
@@ -90,86 +90,75 @@ kdiss <- function(D, k, nstart = 1,  trace=FALSE){
   return(best_fit)
 }
 
-#' K-means clustering with uncertainty quantification
+#' Computation of the medoids
 #' 
-#' Perform the Gibbs-sampling for the k-means algorithm, as described in Rigon, Herring and Dunson. 
+#' Compute the medoids of a given clustering solution.
 #'
-#' @param x numeric matrix of the data
-#' @param k The number of clusters to be considered. 
-#' @param a_lambda Hyperparameter of the Gamma prior on the scale parameter
-#' @param b_lambda Hyperparameter of the Gamma prior on on the scale parameter
-#' @param R Number of MCMC samples after burn-in
-#' @param burn_in Number of MCMC samples to be discarded as burn-in period
-#' @param nstart Number of random initializations for the k-means algorithm
-#' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
+#' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
+#' @param cluster A clustering solution, typically the output of \code{\link{kdiss}}.
 #' @return 
 #' \describe{
-#'   \item{\code{G}}{The letters of the alphabet}
-#'   \item{\code{lambda}}{A vector of numbers}
-#'   \item{\code{loss}}{A vector of numbers}
-#'   \item{\code{G_map}}{A vector of numbers}
-#'   \item{\code{loss_map}}{A vector of numbers}
+#'   \item{\code{medoids}}{Labels of the medoids}
 #' }
 #' 
 #' @export
 #' 
-kmeans_gibbs <- function(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000, nstart=10, trace=FALSE){
+comp_medoids <- function(D, cluster){
   
   # Integrity checks
-  n <- nrow(x)
-  d <- ncol(x)
+  n <- nrow(D)
+  k <- max(cluster)
   
   # Number of cluster must be smaller than n and greater or equal than 1
   stopifnot(k <= n)
   stopifnot(k >= 1)
   
-  if(trace){cat("Initialization of the algorithm\n")}
+  D <- matrix(D,n,n)
+  medoids <- numeric(k)
   
-  fit_map  <- kmeans(x = x, centers = k, nstart = nstart, trace=FALSE)
-  G_map    <- fit_map$cluster
-  freq_map <- as.numeric(table(G_map))
-  
-  if(trace){cat("Starting the Gibbs sampling (R + burn-in) \n")}
-  
-  fit <- Gibbs_kmeans_C(R = R + burn_in, X = x, a_lambda = a_lambda, b_lambda = b_lambda, 
-                      G = G_map, freq = freq_map, trace = trace)
-  
-  # Removing the burn-in
-  fit$G      <- fit$G[-c(1:burn_in),]
-  fit$lambda <- fit$lambda[-c(1:burn_in)]
-  fit$loss   <- fit$loss[-c(1:burn_in)]
-  
-  # Adding the MAP solution
-  fit$G_map    <- G_map
-  fit$loss_map <- fit_map$tot.withinss
-  fit
+  for(j in 1:k){
+    
+    index    <- which(cluster == j)
+    n_k      <- length(index)
+    
+    med      <- index[1]
+    loss     <- sum(D[index[1],index])
+    
+    for(i in 2:n_k){
+      med_new   <- index[i]
+      loss_new  <- sum(D[index[i],index])
+      if(loss_new < loss){med <- med_new; loss <- loss_new}
+    }
+    medoids[j] <- med
+  }
+  medoids
 }
 
-#' K-dissimilarities clustering with uncertainty quantification
+
+#' K-dissimilarities algorithm with uncertainty quantification
 #' 
-#' Perform the Gibbs-sampling for the k-dissimilarities algorithm
+#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see \code{\link{dist}}. This function is complementary to \code{\link{kdiss}}, which may be used to get a point estimate.
 #'
 #' @param x numeric matrix of of the data
 #' @param k The number of clusters to be considered. 
 #' @param p Power of the Minkowski distance
-#' @param a_lambda Hyperparameter of the Gamma prior on the scale parameter
-#' @param b_lambda Hyperparameter of the Gamma prior on on the scale parameter
-#' @param R Number of MCMC samples after burn-in
-#' @param burn_in Number of MCMC samples to be discarded as burn-in period
-#' @param nstart Number of random initializations for the k-means algorithm
+#' @param a_lambda Hyperparameter of the Gamma prior on the scale parameter. The default \code{a_lambda = 0} leads to an improper prior.
+#' @param b_lambda Hyperparameter of the Gamma prior on on the scale parameter. The default \code{a_lambda = 0} leads to an improper prior.
+#' @param R Number of MCMC samples after burn-in.
+#' @param burn_in Number of MCMC samples to be discarded as burn-in period.
+#' @param nstart Number of random initializations for the \code{\link{kdiss}} algorithm, used to initialize the MCMC chain. 
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return 
 #' \describe{
-#'   \item{\code{G}}{The letters of the alphabet}
-#'   \item{\code{lambda}}{A vector of numbers}
-#'   \item{\code{loss}}{A vector of numbers}
-#'   \item{\code{G_map}}{A vector of numbers}
-#'   \item{\code{loss_map}}{A vector of numbers}
+#'   \item{\code{G}}{Labels of the clusters at each \code{MCMC} iteration.}
+#'   \item{\code{lambda}}{Numeric vector of the values of \code{lambda} at each MCMC iteration.}
+#'   \item{\code{loss}}{Numeric vector of the loss function at each MCMC iteration.}
+#'   \item{\code{G_map}}{Labels of the clusters obtained using \code{\link{kdiss}}, representing the maximum a posteriori.}
+#'   \item{\code{loss_map}}{Numeric value of the loss function obtained using \code{\link{kdiss}}, representing the maximized loss.}
 #' }
-#' 
 #' @export
 #' 
-Minkowski_gibbs <- function(x, k, p, a_lambda, b_lambda, R = 1000, burn_in = 1000, nstart = 10,  trace=FALSE){
+Minkowski_gibbs <- function(x, k, p, a_lambda = 0, b_lambda = 0, R = 1000, burn_in = 1000, nstart = 10,  trace=FALSE){
   
   # Integrity checks
   n <- nrow(x)
@@ -281,4 +270,192 @@ kmeans2 <- function(x, k, nstart = 1, algorithm="kmeans", trace=FALSE){
   }
   
   return(best_fit)
+}
+
+#' K-means clustering with uncertainty quantification
+#' 
+#' Perform the Gibbs-sampling for the k-means algorithm, as described in Rigon, Herring and Dunson (2020). 
+#'
+#' @param x A \code{n x d} numeric matrix of the data.
+#' @param k The number of clusters to be considered.
+#' @param a_lambda Hyperparameter of the Gamma prior on the scale parameter
+#' @param b_lambda Hyperparameter of the Gamma prior on on the scale parameter
+#' @param R Number of MCMC samples after burn-in
+#' @param burn_in Number of MCMC samples to be discarded as burn-in period
+#' @param nstart Number of random initializations for the k-means algorithm
+#' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
+#' @return 
+#' \describe{
+#'   \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration}
+#'   \item{\code{lambda}}{A Rvector of numbers}
+#'   \item{\code{loss}}{A vector of numbers}
+#'   \item{\code{G_map}}{A vector of numbers}
+#'   \item{\code{loss_map}}{A vector of numbers}
+#' }
+#' 
+#' @export
+#' 
+kmeans_gibbs <- function(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000, nstart=10, trace=FALSE){
+  
+  # Integrity checks
+  n <- nrow(x)
+  d <- ncol(x)
+  
+  # Number of cluster must be smaller than n and greater or equal than 1
+  stopifnot(k <= n)
+  stopifnot(k >= 1)
+  
+  if(trace){cat("Initialization of the algorithm\n")}
+  
+  fit_map  <- kmeans(x = x, centers = k, nstart = nstart, trace=FALSE)
+  G_map    <- fit_map$cluster
+  freq_map <- as.numeric(table(G_map))
+  
+  if(trace){cat("Starting the Gibbs sampling (R + burn-in) \n")}
+  
+  fit <- Gibbs_kmeans_C(R = R + burn_in, X = x, a_lambda = a_lambda, b_lambda = b_lambda, 
+                        G = G_map, freq = freq_map, trace = trace)
+  
+  # Removing the burn-in
+  fit$G      <- fit$G[-c(1:burn_in),]
+  fit$lambda <- fit$lambda[-c(1:burn_in)]
+  fit$loss   <- fit$loss[-c(1:burn_in)]
+  
+  # Adding the MAP solution
+  fit$G_map    <- G_map
+  fit$loss_map <- fit_map$tot.withinss
+  fit
+}
+
+
+#' Selection of the number of cluster for the k-binary algorithm
+#' 
+#' It displays the value of the loss function for various choices of k
+#'
+#' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
+#' @param k_max The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
+#' @param nstart Number of random sets that has been chosen
+#' @return It plots the loss function for different clustering solutions
+#' 
+#' @export
+#' 
+kbinary_select <- function(x, k_max, nstart = 1) {
+  
+  n    <- nrow(x)
+  p    <- ncol(x)
+  x    <- matrix(x,n,p)
+  loss <- numeric(k_max)
+  ncluster <- 1:k_max
+  
+  for(k in ncluster){
+    fit     <- kbinary(x = x, k = k, nstart = nstart,  trace=FALSE)
+    loss[k] <- fit$loss
+  }
+  p <- ggplot(data=data.frame(ncluster=ncluster, loss = loss), aes(x=ncluster,y=loss)) + geom_point() + geom_line() + theme_bw() + xlab("Number of clusters") + ylab("Loss function")
+  p 
+}
+
+#' K-binary clustering
+#' 
+#' Perform k-binary clustering
+#'
+#' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
+#' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
+#' @param nstart Number of random sets that has been chosen
+#' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
+#' @return 
+#' \itemize{
+#'   \item A - The letters of the alphabet.
+#'   \item B - A vector of numbers.
+#' }
+#' 
+#' @export
+#' 
+kbinary <- function(x, k, nstart = 1, trace=FALSE){
+  
+  # Integrity checks
+  n <- nrow(x)
+  
+  stopifnot(k <= n)
+  stopifnot(k >= 1)
+  
+  p <- ncol(x)
+  x <- matrix(x,n,p)
+  
+  # Random allocation with equal sizes
+  
+  if(k==1){
+    # Initialize randomly with Gibbs-sampling
+    G     <- rep(1,n)
+    freq  <- as.numeric(table(G))
+    best_fit  <- kbinary_C(x = x, k = k, G = G,  freq = freq, trace = trace)
+    return(best_fit)
+  }
+  
+  # Random allocation with equal sizes
+  G     <- sample(cut(seq(1,n),breaks=k,labels=FALSE))
+  freq  <- as.numeric(table(G))
+  
+  best_fit  <- kbinary_C(x = x, k = k, G = G,  freq = freq, trace = trace)
+  if(nstart >= 2){
+    for(r in 2:nstart){
+      G     <- sample(cut(seq(1,n),breaks=k,labels=FALSE))
+      freq  <- as.numeric(table(G))
+      fit   <- kbinary_C(x = x, k = k, G = G,  freq = freq, trace = trace)
+      if(fit$loss < best_fit$loss) best_fit <- fit
+    }
+  }
+  return(best_fit)
+}
+
+#' K-dissimilarities algorithm with uncertainty quantification
+#' 
+#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see \code{\link{dist}}.
+#'
+#' @param x numeric matrix of of the data
+#' @param k The number of clusters to be considered. 
+#' @param R Number of MCMC samples after burn-in
+#' @param burn_in Number of MCMC samples to be discarded as burn-in period
+#' @param nstart Number of random initializations for the k-means algorithm
+#' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
+#' @return 
+#' \describe{
+#'   \item{\code{G}}{The letters of the alphabet}
+#'   \item{\code{lambda}}{A vector of numbers}
+#'   \item{\code{loss}}{A vector of numbers}
+#'   \item{\code{G_map}}{A vector of numbers}
+#'   \item{\code{loss_map}}{A vector of numbers}
+#' }
+#' 
+#' @export
+#' 
+kbinary_gibbs <- function(x, k, lambda = 1, R = 1000, burn_in = 1000, nstart = 10,  trace=FALSE){
+  
+  # Integrity checks
+  n <- nrow(x)
+  d <- ncol(x)
+  
+  # Number of cluster must be smaller than n and greater or equal than 1
+  stopifnot(k <= n)
+  stopifnot(k >= 1)
+  
+  if(trace){cat("Initialization of the algorithm\n")}
+ 
+  
+  fit_map <- kbinary(x = x, k = k, nstart = nstart, trace=FALSE)
+  G_map    <- fit_map$cluster
+  freq_map <- as.numeric(table(G_map))
+  if(trace){cat("Starting the Gibbs sampling (R + burn-in) \n")}
+  
+  fit <- Gibbs_kbinary_C(R = R + burn_in, X = x, G = G_map, freq = freq_map, lambda = lambda, trace = trace)
+  
+  # Removing the burn-in
+  fit$G      <- fit$G[-c(1:burn_in),]
+  fit$lambda <- fit$lambda[-c(1:burn_in)]
+  fit$loss   <- fit$loss[-c(1:burn_in)]
+  
+  # Adding the MAP solution
+  fit$G_map    <- G_map
+  fit$loss_map <- fit_map$loss
+  fit
 }

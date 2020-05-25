@@ -39,6 +39,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// loss_binary
+double loss_binary(const arma::mat& x_cluster);
+RcppExport SEXP _GBClust_loss_binary(SEXP x_clusterSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x_cluster(x_clusterSEXP);
+    rcpp_result_gen = Rcpp::wrap(loss_binary(x_cluster));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sample_centroids
+arma::mat sample_centroids(const arma::mat& x, int k);
+RcppExport SEXP _GBClust_sample_centroids(SEXP xSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(sample_centroids(x, k));
+    return rcpp_result_gen;
+END_RCPP
+}
 // kdissimilarities_C
 List kdissimilarities_C(const arma::mat& D, arma::vec G, arma::vec freq, bool trace);
 RcppExport SEXP _GBClust_kdissimilarities_C(SEXP DSEXP, SEXP GSEXP, SEXP freqSEXP, SEXP traceSEXP) {
@@ -50,6 +73,49 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type freq(freqSEXP);
     Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
     rcpp_result_gen = Rcpp::wrap(kdissimilarities_C(D, G, freq, trace));
+    return rcpp_result_gen;
+END_RCPP
+}
+// kmeans_C
+List kmeans_C(const arma::mat& x, arma::mat m, int k, bool trace);
+RcppExport SEXP _GBClust_kmeans_C(SEXP xSEXP, SEXP mSEXP, SEXP kSEXP, SEXP traceSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type m(mSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
+    rcpp_result_gen = Rcpp::wrap(kmeans_C(x, m, k, trace));
+    return rcpp_result_gen;
+END_RCPP
+}
+// kmeans2_C
+List kmeans2_C(const arma::mat& x, arma::mat m, int k, bool trace);
+RcppExport SEXP _GBClust_kmeans2_C(SEXP xSEXP, SEXP mSEXP, SEXP kSEXP, SEXP traceSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type m(mSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
+    rcpp_result_gen = Rcpp::wrap(kmeans2_C(x, m, k, trace));
+    return rcpp_result_gen;
+END_RCPP
+}
+// kbinary_C
+List kbinary_C(const arma::mat& x, arma::vec G, arma::vec freq, int k, bool trace);
+RcppExport SEXP _GBClust_kbinary_C(SEXP xSEXP, SEXP GSEXP, SEXP freqSEXP, SEXP kSEXP, SEXP traceSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type G(GSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type freq(freqSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
+    rcpp_result_gen = Rcpp::wrap(kbinary_C(x, G, freq, k, trace));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -88,43 +154,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// sample_centroids
-arma::mat sample_centroids(const arma::mat& x, int k);
-RcppExport SEXP _GBClust_sample_centroids(SEXP xSEXP, SEXP kSEXP) {
+// Gibbs_kbinary_C
+List Gibbs_kbinary_C(int R, const arma::mat& X, arma::vec G, arma::vec freq, double lambda, bool trace);
+RcppExport SEXP _GBClust_Gibbs_kbinary_C(SEXP RSEXP, SEXP XSEXP, SEXP GSEXP, SEXP freqSEXP, SEXP lambdaSEXP, SEXP traceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    rcpp_result_gen = Rcpp::wrap(sample_centroids(x, k));
-    return rcpp_result_gen;
-END_RCPP
-}
-// kmeans_C
-List kmeans_C(const arma::mat& x, arma::mat m, int k, bool trace);
-RcppExport SEXP _GBClust_kmeans_C(SEXP xSEXP, SEXP mSEXP, SEXP kSEXP, SEXP traceSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type m(mSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    Rcpp::traits::input_parameter< int >::type R(RSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type G(GSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type freq(freqSEXP);
+    Rcpp::traits::input_parameter< double >::type lambda(lambdaSEXP);
     Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
-    rcpp_result_gen = Rcpp::wrap(kmeans_C(x, m, k, trace));
-    return rcpp_result_gen;
-END_RCPP
-}
-// kmeans2_C
-List kmeans2_C(const arma::mat& x, arma::mat m, int k, bool trace);
-RcppExport SEXP _GBClust_kmeans2_C(SEXP xSEXP, SEXP mSEXP, SEXP kSEXP, SEXP traceSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type m(mSEXP);
-    Rcpp::traits::input_parameter< int >::type k(kSEXP);
-    Rcpp::traits::input_parameter< bool >::type trace(traceSEXP);
-    rcpp_result_gen = Rcpp::wrap(kmeans2_C(x, m, k, trace));
+    rcpp_result_gen = Rcpp::wrap(Gibbs_kbinary_C(R, X, G, freq, lambda, trace));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -133,12 +175,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"_GBClust_loss_kmeans", (DL_FUNC) &_GBClust_loss_kmeans, 1},
     {"_GBClust_loss_average", (DL_FUNC) &_GBClust_loss_average, 1},
     {"_GBClust_loss_kmeans2", (DL_FUNC) &_GBClust_loss_kmeans2, 1},
-    {"_GBClust_kdissimilarities_C", (DL_FUNC) &_GBClust_kdissimilarities_C, 4},
-    {"_GBClust_Gibbs_kmeans_C", (DL_FUNC) &_GBClust_Gibbs_kmeans_C, 7},
-    {"_GBClust_Gibbs_Mink_C", (DL_FUNC) &_GBClust_Gibbs_Mink_C, 8},
+    {"_GBClust_loss_binary", (DL_FUNC) &_GBClust_loss_binary, 1},
     {"_GBClust_sample_centroids", (DL_FUNC) &_GBClust_sample_centroids, 2},
+    {"_GBClust_kdissimilarities_C", (DL_FUNC) &_GBClust_kdissimilarities_C, 4},
     {"_GBClust_kmeans_C", (DL_FUNC) &_GBClust_kmeans_C, 4},
     {"_GBClust_kmeans2_C", (DL_FUNC) &_GBClust_kmeans2_C, 4},
+    {"_GBClust_kbinary_C", (DL_FUNC) &_GBClust_kbinary_C, 5},
+    {"_GBClust_Gibbs_kmeans_C", (DL_FUNC) &_GBClust_Gibbs_kmeans_C, 7},
+    {"_GBClust_Gibbs_Mink_C", (DL_FUNC) &_GBClust_Gibbs_Mink_C, 8},
+    {"_GBClust_Gibbs_kbinary_C", (DL_FUNC) &_GBClust_Gibbs_kbinary_C, 6},
     {NULL, NULL, 0}
 };
 

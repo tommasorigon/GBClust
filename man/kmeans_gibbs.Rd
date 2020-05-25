@@ -8,7 +8,7 @@ kmeans_gibbs(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000,
   nstart = 10, trace = FALSE)
 }
 \arguments{
-\item{x}{numeric matrix of the data}
+\item{x}{A \code{n x d} numeric matrix of the data.}
 
 \item{k}{The number of clusters to be considered.}
 
@@ -26,13 +26,13 @@ kmeans_gibbs(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000,
 }
 \value{
 \describe{
-  \item{\code{G}}{The letters of the alphabet}
-  \item{\code{lambda}}{A vector of numbers}
+  \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration}
+  \item{\code{lambda}}{A Rvector of numbers}
   \item{\code{loss}}{A vector of numbers}
   \item{\code{G_map}}{A vector of numbers}
   \item{\code{loss_map}}{A vector of numbers}
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-means algorithm, as described in Rigon, Herring and Dunson.
+Perform the Gibbs-sampling for the k-means algorithm, as described in Rigon, Herring and Dunson (2020).
 }

@@ -7,16 +7,16 @@
 kdiss_select(D, k_max, nstart = 1, method = "elbow")
 }
 \arguments{
-\item{D}{A n x n numeric matrix with the dissimilarities}
+\item{D}{A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.}
 
-\item{k_max}{Maximum number of clusters to be considered}
+\item{k_max}{Maximum number of clusters to be considered.}
 
-\item{nstart}{Number of random initializations}
+\item{nstart}{Number of random initializations.}
 
-\item{method}{The graph that has to reported, i.e. \code{elbow} or \code{silhouette}}
+\item{method}{The graph that will be displayed. Supported options are \code{method="elbow"}, which displays the loss function, or \code{method="silhouette"}. See \code{\link{silhouette}} for details about the latter.}
 }
 \value{
-It return a \code{ggplot2} graph of the loss function / average silhouette width, for different values of \code{k}, from 1 up to \code{k_max}.
+It return a \code{\link{ggplot2}} graph of the loss function / average silhouette width, for \code{k=1,...,k_max}.
 }
 \description{
 It displays the value of the loss function / average silhouette width, for different values of \code{k}

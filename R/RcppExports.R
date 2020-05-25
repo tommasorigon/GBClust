@@ -13,8 +13,28 @@ loss_kmeans2 <- function(x_cluster) {
     .Call('_GBClust_loss_kmeans2', PACKAGE = 'GBClust', x_cluster)
 }
 
+loss_binary <- function(x_cluster) {
+    .Call('_GBClust_loss_binary', PACKAGE = 'GBClust', x_cluster)
+}
+
+sample_centroids <- function(x, k) {
+    .Call('_GBClust_sample_centroids', PACKAGE = 'GBClust', x, k)
+}
+
 kdissimilarities_C <- function(D, G, freq, trace) {
     .Call('_GBClust_kdissimilarities_C', PACKAGE = 'GBClust', D, G, freq, trace)
+}
+
+kmeans_C <- function(x, m, k, trace) {
+    .Call('_GBClust_kmeans_C', PACKAGE = 'GBClust', x, m, k, trace)
+}
+
+kmeans2_C <- function(x, m, k, trace) {
+    .Call('_GBClust_kmeans2_C', PACKAGE = 'GBClust', x, m, k, trace)
+}
+
+kbinary_C <- function(x, G, freq, k, trace) {
+    .Call('_GBClust_kbinary_C', PACKAGE = 'GBClust', x, G, freq, k, trace)
 }
 
 Gibbs_kmeans_C <- function(R, X, a_lambda, b_lambda, G, freq, trace) {
@@ -25,15 +45,7 @@ Gibbs_Mink_C <- function(R, D, d, a_lambda, b_lambda, G, freq, trace) {
     .Call('_GBClust_Gibbs_Mink_C', PACKAGE = 'GBClust', R, D, d, a_lambda, b_lambda, G, freq, trace)
 }
 
-sample_centroids <- function(x, k) {
-    .Call('_GBClust_sample_centroids', PACKAGE = 'GBClust', x, k)
-}
-
-kmeans_C <- function(x, m, k, trace) {
-    .Call('_GBClust_kmeans_C', PACKAGE = 'GBClust', x, m, k, trace)
-}
-
-kmeans2_C <- function(x, m, k, trace) {
-    .Call('_GBClust_kmeans2_C', PACKAGE = 'GBClust', x, m, k, trace)
+Gibbs_kbinary_C <- function(R, X, G, freq, lambda, trace) {
+    .Call('_GBClust_Gibbs_kbinary_C', PACKAGE = 'GBClust', R, X, G, freq, lambda, trace)
 }
 

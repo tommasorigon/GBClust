@@ -2,25 +2,25 @@
 % Please edit documentation in R/clustering.R
 \name{kdiss}
 \alias{kdiss}
-\title{K-dissimilarities clustering}
+\title{K-dissimilarities algorithm}
 \usage{
 kdiss(D, k, nstart = 1, trace = FALSE)
 }
 \arguments{
-\item{D}{A n x n numeric matrix with the dissimilarities}
+\item{D}{A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.}
 
-\item{k}{The number of clusters to be considered}
+\item{k}{The number of clusters to be considered. See \code{\link{kdiss_select}} for selection criteria.}
 
-\item{nstart}{Number of random initializations}
+\item{nstart}{Number of random initializations.}
 
 \item{trace}{logical: if true, tracing information on the progress of the algorithm is produced}
 }
 \value{
 \describe{
-  \item{\code{cluster}}{The letters of the alphabet}
-  \item{\code{loss}}{A vector of numbers}
+  \item{\code{cluster}}{Labels of the clusters at convergence}
+  \item{\code{loss}}{Numeric value of the loss function at convergence}
 }
 }
 \description{
-Perform the k-dissimilarities Algorithm described in Rigon, Herring and Dunson (2020).
+Perform the k-dissimilarities algorithm described in Rigon, Herring and Dunson (2020).
 }

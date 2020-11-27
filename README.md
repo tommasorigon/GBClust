@@ -13,6 +13,4 @@ The `GBClust` package can be installed by running the following commands:
 devtools::install_github("tommasorigon/GBClust")
 ```
 
-In addition:
-
-* The file [`introduction.md`](tutorial/introduction.md) contains detailed instruction for reproducing Figure 1 of the [manuscript](https://arxiv.org/abs/2006.05451).
+The [full documentation](GBClust_0.0.1.pdf) of the `GBClust` package is available in this repository. Moreover, the file [`introduction.md`](tutorial/introduction.md) contains detailed instruction for reproducing Figure 1 of the [manuscript](https://arxiv.org/abs/2006.05451).

@@ -16,7 +16,3 @@ devtools::install_github("tommasorigon/GBClust")
 In addition:
 
 * The file [`introduction.md`](tutorial/introduction.md) contains detailed instruction for reproducing Figure 1 of the [manuscript](https://arxiv.org/abs/2006.05451).
-
-* The file [`simulation1.md`](tutorial/simulation1.md) contains detailed instruction for reproducing the simulation study of **Section 7.1** of the [manuscript](https://arxiv.org/abs/2006.05451).
-
-* The file [`simulation2.md`](tutorial/simulation1.md) contains detailed instruction for reproducing the simulation study of **Section 7.2** of the [manuscript](https://arxiv.org/abs/2006.05451).

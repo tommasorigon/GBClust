@@ -4,8 +4,15 @@
 \alias{kbinary_gibbs}
 \title{K-dissimilarities algorithm with uncertainty quantification}
 \usage{
-kbinary_gibbs(x, k, R = 1000, burn_in = 1000, nstart = 10,
-  trace = FALSE)
+kbinary_gibbs(
+  x,
+  k,
+  lambda = 1,
+  R = 1000,
+  burn_in = 1000,
+  nstart = 10,
+  trace = FALSE
+)
 }
 \arguments{
 \item{x}{numeric matrix of of the data}

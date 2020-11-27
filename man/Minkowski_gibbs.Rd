@@ -4,8 +4,17 @@
 \alias{Minkowski_gibbs}
 \title{K-dissimilarities algorithm with uncertainty quantification}
 \usage{
-Minkowski_gibbs(x, k, p, a_lambda = 0, b_lambda = 0, R = 1000,
-  burn_in = 1000, nstart = 10, trace = FALSE)
+Minkowski_gibbs(
+  x,
+  k,
+  p,
+  a_lambda = 0,
+  b_lambda = 0,
+  R = 1000,
+  burn_in = 1000,
+  nstart = 10,
+  trace = FALSE
+)
 }
 \arguments{
 \item{x}{numeric matrix of of the data}

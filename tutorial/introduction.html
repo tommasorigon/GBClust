@@ -413,7 +413,7 @@ summary {
 </div>
 
 
-<p>In this tutorial we describe the steps for obtaining Figure 1 of the paper Rigon, T., Herring, A. H. and Dunson, D. B. (2020+). <a href="https://arxiv.org/abs/2006.05451">A generalized Bayes framework for probabilistic clustering</a>.</p>
+<p>In this tutorial we describe the steps for obtaining Figure 1 of the paper Rigon, T., Herring, A. H. and Dunson, D. B. (2020+) entitled ``<a href="https://arxiv.org/abs/2006.05451">A generalized Bayes framework for probabilistic clustering</a>’’. The <a href="../GBClust_0.0.1.pdf">full documentation</a> of the package is available in this repository.</p>
 <p>All the analyses are performed with a <strong>MacBook Pro (macOS Catalina, version 11.0.1)</strong>, using a <code>R</code> version <strong>4.0.3</strong>. Notice that matrix decompositions involved in this code might differ across operating systems.</p>
 <p>The code described below requires the installation of the <code>GBClust</code> package, available in this repository. See the <a href="https://github.com/tommasorigon/GBClust/blob/master/README.md">README</a> for instructions on the installation.</p>
 <p>As a preliminary step, we load on a clean environment all the required libraries.</p>
@@ -442,7 +442,7 @@ dataset &lt;- NULL
 for (h in 1:H) {
   dataset &lt;- rbind(dataset, rmvnorm(n = n / H, mean = mu[h, ], sigma = sigma2 * diag(d)))
 }</code></pre>
-<p>We estimate the k-means clustering and the associated uncertainty through the functions <code>kmeans2</code> and <code>kmeans_gibbs</code>, respectively.</p>
+<p>We obtain the k-means clustering solution (<code>kmeans2</code> function) and the associated uncertainty (<code>kmeans_gibbs</code> function). The latter is an implementation of the Gibbs sampling algorithm described in <strong>Theorem 1</strong> of the paper in the k-means case.</p>
 <pre class="r"><code># K-means algorithm
 fit &lt;- kmeans2(dataset, k = H, nstart = 10)
 

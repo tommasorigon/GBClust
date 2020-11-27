@@ -4,8 +4,16 @@
 \alias{kmeans_gibbs}
 \title{K-means clustering with uncertainty quantification}
 \usage{
-kmeans_gibbs(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000,
-  nstart = 10, trace = FALSE)
+kmeans_gibbs(
+  x,
+  k,
+  a_lambda,
+  b_lambda,
+  R = 1000,
+  burn_in = 1000,
+  nstart = 10,
+  trace = FALSE
+)
 }
 \arguments{
 \item{x}{A \code{n x d} numeric matrix of the data.}

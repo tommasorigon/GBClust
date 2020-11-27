@@ -1,4 +1,7 @@
+# GBClust needs to be installed --------
 library(GBClust)
+
+# Other packages
 library(ggplot2)
 library(mcclust)
 library(mvtnorm)

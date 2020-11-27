@@ -1,4 +1,7 @@
+# GBClust needs to be installed --------
 library(GBClust)
+
+# Other packages
 library(reshape2)
 library(ggplot2)
 library(poLCA)

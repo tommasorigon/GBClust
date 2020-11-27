@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{kmeans2_select}
 \alias{kmeans2_select}
-\title{Selection of the number of cluster for the k-dissimilarities algorithm}
+\title{Selection of the number of cluster for the k-means algorithm}
 \usage{
 kmeans2_select(x, k_max, nstart = 1, algorithm = "kmeans")
 }

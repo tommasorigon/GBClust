@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{kmeans2}
 \alias{kmeans2}
-\title{K-Means clustering}
+\title{K-means clustering}
 \usage{
 kmeans2(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE)
 }

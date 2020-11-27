@@ -207,7 +207,7 @@ Minkowski_gibbs <- function(x, k, p, a_lambda = 0, b_lambda = 0, R = 1000, burn_
   fit
 }
 
-#' Selection of the number of cluster for the k-dissimilarities algorithm
+#' Selection of the number of cluster for the k-means algorithm
 #'
 #' It displays the value of the loss function for various choices of k
 #'
@@ -239,7 +239,7 @@ kmeans2_select <- function(x, k_max, nstart = 1, algorithm = "kmeans") {
   p
 }
 
-#' K-Means clustering
+#' K-means clustering
 #'
 #' Perform the k-means clustering on a data matrix.
 #'

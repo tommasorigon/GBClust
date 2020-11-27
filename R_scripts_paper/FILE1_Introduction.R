@@ -5,9 +5,7 @@ library(mvtnorm)
 
 rm(list = ls())
 
-# ----------------------------
-# Oracle Similarity matrix
-# ----------------------------
+# Oracle Similarity matrix-------------
 
 Miscl <- function(S, cluster, medoids) {
   pr_miscl <- numeric(nrow(S))
@@ -18,9 +16,7 @@ Miscl <- function(S, cluster, medoids) {
   pr_miscl
 }
 
-# -----------------
-# Initialization
-# -----------------
+# Initialization ----------------------
 
 d <- 2
 H <- 2
@@ -31,7 +27,7 @@ sigma2 <- 1
 G0 <- rep(1:H, each = n / H)
 mu <- matrix(c(-1.2, 1.2, -1.2, 1.2), 2, 2)
 
-# DATASET CREATION --------------------
+# Datase creation --------------------
 
 set.seed(1234)
 dataset <- NULL

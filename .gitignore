@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+src/*.o
+src/*.so
+src/*.dll
+tutorial/.DS_Store
+GBClust.Rproj
+.Rbuildignore
+tutorial/introduction.html

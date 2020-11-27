@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{kmeans2}
 \alias{kmeans2}
-\title{K-Means^2 Clustering}
+\title{K-Means^2 clustering}
 \usage{
 kmeans2(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE)
 }
@@ -18,11 +18,12 @@ kmeans2(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE)
 \item{trace}{logical: if true, tracing information on the progress of the algorithm is produced.}
 }
 \value{
-\itemize{
-  \item A - The letters of the alphabet.
-  \item B - A vector of numbers.
+\describe{
+  \item{\code{cluster}}{Labels of the clusters at convergence}
+  \item{\code{centers}}{The value of the centroids at convergence}
+  \item{\code{loss}}{Numeric value of the loss function at convergence}
 }
 }
 \description{
-Perform k-means and k-means^2 on a data matrix
+Perform k-means and k-means^2 on a data matrix.
 }

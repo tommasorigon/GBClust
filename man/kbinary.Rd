@@ -7,7 +7,7 @@
 kbinary(x, k, nstart = 1, trace = FALSE)
 }
 \arguments{
-\item{x}{numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).}
+\item{x}{binary matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).}
 
 \item{k}{The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.}
 
@@ -16,11 +16,12 @@ kbinary(x, k, nstart = 1, trace = FALSE)
 \item{trace}{logical: if true, tracing information on the progress of the algorithm is produced.}
 }
 \value{
-\itemize{
-  \item A - The letters of the alphabet.
-  \item B - A vector of numbers.
+\describe{
+  \item{\code{cluster}}{Labels of the clusters at convergence}
+  \item{\code{centers}}{The value of the centroids at convergence}
+  \item{\code{loss}}{Numeric value of the loss function at convergence}
 }
 }
 \description{
-Perform k-binary clustering
+Perform the so-called k-binary clustering algorithm, for obtaining groups when the data are binary observations.
 }

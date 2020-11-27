@@ -1,4 +1,4 @@
-In this tutorial we describe the steps for obtaining Figure 1 of the paper Rigon, T., Herring, A. H. and Dunson, D. B. (2020+) entitled ``[A generalized Bayes framework for probabilistic clustering](https://arxiv.org/abs/2006.05451)''. The [full documentation](https://github.com/tommasorigon/GBClust/raw/master/GBClust_0.0.1.pdf) of the package is available in this repository.
+In this tutorial we describe the steps for obtaining Figure 1 of the paper Rigon, T., Herring, A. H. and Dunson, D. B. (2020+) entitled ``[A generalized Bayes framework for probabilistic clustering](https://arxiv.org/abs/2006.05451)''. The [full documentation](https://github.com/tommasorigon/GBClust/raw/master/GBClust_0.0.2.pdf) of the package is available in this repository.
 
 All the analyses are performed with a **MacBook Pro (macOS Catalina, version 11.0.1)**, using a `R` version **4.0.3**. Notice that matrix decompositions involved in this code might differ across operating systems. 
 

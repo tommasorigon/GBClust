@@ -52,7 +52,7 @@ kdiss_select <- function(D, k_max, nstart = 1, method = "elbow") {
 
 #' K-dissimilarities algorithm
 #'
-#' Perform the k-dissimilarities algorithm described in Rigon, T., Herring, A. H. and Dunson, D. B. (2020).
+#' Perform the k-dissimilarities algorithm described.
 #'
 #' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
 #' @param k The number of clusters to be considered. See \code{\link{kdiss_select}} for selection criteria.
@@ -103,11 +103,11 @@ kdiss <- function(D, k, nstart = 1, trace = FALSE) {
 #'
 #' Compute the medoids of a given clustering solution based on the corresponding dissimilarity matrix. 
 #'
-#' @param D A \code{n x n} numeric matrix with the dissimilarities, usually the output of \code{\link{dist}} or \code{\link{daisy}}.
-#' @param cluster A clustering solution, typically the output of \code{\link{kdiss}}.
+#' @param D A \code{n x n} numeric matrix containing the dissimilarities, i.e. the output of the functions \code{\link{dist}} or \code{\link{daisy}}.
+#' @param cluster A clustering solution, i.e. the output of \code{\link{kdiss}}.
 #' @return
 #' \describe{
-#'   \item{\code{medoids}}{Indexes of the medoids following the order of the dissimilarity matrix \code{D}.}
+#'   \item{\code{medoids}}{Indexes of the medoids.}
 #' }
 #'
 #' @export
@@ -148,7 +148,7 @@ comp_medoids <- function(D, cluster) {
 
 #' K-dissimilarities algorithm with uncertainty quantification
 #'
-#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see Rigon, T., Herring, A. H. and Dunson, D. B. (2020). This function is complementary to \code{\link{kdiss}}, which is used instead to get a point estimate.
+#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance. This function is complementary to \code{\link{kdiss}}, which is used instead to get a point estimate.
 #'
 #' @param x numeric matrix of of the data
 #' @param k The number of clusters to be considered.
@@ -239,9 +239,9 @@ kmeans2_select <- function(x, k_max, nstart = 1, algorithm = "kmeans") {
   p
 }
 
-#' K-Means^2 Clustering
+#' K-Means^2 clustering
 #'
-#' Perform k-means and k-means^2 on a data matrix
+#' Perform k-means and k-means^2 on a data matrix.
 #'
 #' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
 #' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
@@ -249,9 +249,10 @@ kmeans2_select <- function(x, k_max, nstart = 1, algorithm = "kmeans") {
 #' @param algorithm The algorithm to be used
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
-#' \itemize{
-#'   \item A - The letters of the alphabet.
-#'   \item B - A vector of numbers.
+#' \describe{
+#'   \item{\code{cluster}}{Labels of the clusters at convergence}
+#'   \item{\code{centers}}{The value of the centroids at convergence}
+#'   \item{\code{loss}}{Numeric value of the loss function at convergence}
 #' }
 #'
 #' @export
@@ -295,7 +296,7 @@ kmeans2 <- function(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE) {
 
 #' K-means clustering with uncertainty quantification
 #'
-#' Perform the Gibbs-sampling for the k-means algorithm, as described in Rigon, Herring and Dunson (2020).
+#' Perform the Gibbs-sampling for the k-means algorithm.
 #'
 #' @param x A \code{n x d} numeric matrix of the data.
 #' @param k The number of clusters to be considered.
@@ -388,16 +389,17 @@ kbinary_select <- function(x, k_max, nstart = 1) {
 
 #' K-binary clustering
 #'
-#' Perform k-binary clustering
+#' Perform the so-called k-binary clustering algorithm, for obtaining groups when the data are binary observations. 
 #'
-#' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
+#' @param x binary matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
 #' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
 #' @param nstart Number of random sets that has been chosen
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
-#' \itemize{
-#'   \item A - The letters of the alphabet.
-#'   \item B - A vector of numbers.
+#' \describe{
+#'   \item{\code{cluster}}{Labels of the clusters at convergence}
+#'   \item{\code{centers}}{The value of the centroids at convergence}
+#'   \item{\code{loss}}{Numeric value of the loss function at convergence}
 #' }
 #'
 #' @export
@@ -445,6 +447,7 @@ kbinary <- function(x, k, nstart = 1, trace = FALSE) {
 #'
 #' @param x numeric matrix of of the data
 #' @param k The number of clusters to be considered.
+#' @param lambda Gibbs posterior tuning parameter
 #' @param R Number of MCMC samples after burn-in
 #' @param burn_in Number of MCMC samples to be discarded as burn-in period
 #' @param nstart Number of random initializations for the k-means algorithm

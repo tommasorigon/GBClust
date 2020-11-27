@@ -19,6 +19,8 @@ kbinary_gibbs(
 
 \item{k}{The number of clusters to be considered.}
 
+\item{lambda}{Gibbs posterior tuning parameter}
+
 \item{R}{Number of MCMC samples after burn-in}
 
 \item{burn_in}{Number of MCMC samples to be discarded as burn-in period}

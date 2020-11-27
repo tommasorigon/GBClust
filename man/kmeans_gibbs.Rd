@@ -42,5 +42,5 @@ kmeans_gibbs(
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-means algorithm, as described in Rigon, Herring and Dunson (2020).
+Perform the Gibbs-sampling for the k-means algorithm.
 }

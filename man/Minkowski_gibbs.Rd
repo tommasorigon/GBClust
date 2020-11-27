@@ -45,5 +45,5 @@ Minkowski_gibbs(
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see \code{\link{dist}}. This function is complementary to \code{\link{kdiss}}, which may be used to get a point estimate.
+Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see Rigon, T., Herring, A. H. and Dunson, D. B. (2020). This function is complementary to \code{\link{kdiss}}, which is used instead to get a point estimate.
 }

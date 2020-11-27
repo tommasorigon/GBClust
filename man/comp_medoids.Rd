@@ -7,15 +7,15 @@
 comp_medoids(D, cluster)
 }
 \arguments{
-\item{D}{A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.}
+\item{D}{A \code{n x n} numeric matrix with the dissimilarities, usually the output of \code{\link{dist}} or \code{\link{daisy}}.}
 
 \item{cluster}{A clustering solution, typically the output of \code{\link{kdiss}}.}
 }
 \value{
 \describe{
-  \item{\code{medoids}}{Labels of the medoids}
+  \item{\code{medoids}}{Indexes of the medoids following the order of the dissimilarity matrix \code{D}.}
 }
 }
 \description{
-Compute the medoids of a given clustering solution.
+Compute the medoids of a given clustering solution based on the corresponding dissimilarity matrix.
 }

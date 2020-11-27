@@ -52,7 +52,7 @@ kdiss_select <- function(D, k_max, nstart = 1, method = "elbow") {
 
 #' K-dissimilarities algorithm
 #'
-#' Perform the k-dissimilarities algorithm described in Rigon, Herring and Dunson (2020).
+#' Perform the k-dissimilarities algorithm described in Rigon, T., Herring, A. H. and Dunson, D. B. (2020).
 #'
 #' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
 #' @param k The number of clusters to be considered. See \code{\link{kdiss_select}} for selection criteria.
@@ -101,13 +101,13 @@ kdiss <- function(D, k, nstart = 1, trace = FALSE) {
 
 #' Computation of the medoids
 #'
-#' Compute the medoids of a given clustering solution.
+#' Compute the medoids of a given clustering solution based on the corresponding dissimilarity matrix. 
 #'
-#' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
+#' @param D A \code{n x n} numeric matrix with the dissimilarities, usually the output of \code{\link{dist}} or \code{\link{daisy}}.
 #' @param cluster A clustering solution, typically the output of \code{\link{kdiss}}.
 #' @return
 #' \describe{
-#'   \item{\code{medoids}}{Labels of the medoids}
+#'   \item{\code{medoids}}{Indexes of the medoids following the order of the dissimilarity matrix \code{D}.}
 #' }
 #'
 #' @export
@@ -148,7 +148,7 @@ comp_medoids <- function(D, cluster) {
 
 #' K-dissimilarities algorithm with uncertainty quantification
 #'
-#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see \code{\link{dist}}. This function is complementary to \code{\link{kdiss}}, which may be used to get a point estimate.
+#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see Rigon, T., Herring, A. H. and Dunson, D. B. (2020). This function is complementary to \code{\link{kdiss}}, which is used instead to get a point estimate.
 #'
 #' @param x numeric matrix of of the data
 #' @param k The number of clusters to be considered.

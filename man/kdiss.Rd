@@ -22,5 +22,5 @@ kdiss(D, k, nstart = 1, trace = FALSE)
 }
 }
 \description{
-Perform the k-dissimilarities algorithm described in Rigon, Herring and Dunson (2020).
+Perform the k-dissimilarities algorithm described in Rigon, T., Herring, A. H. and Dunson, D. B. (2020).
 }

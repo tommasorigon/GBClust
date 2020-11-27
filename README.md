@@ -1,4 +1,4 @@
-# Gibbs clustering package **GBClust** 
+# The **GBClust** package for generalized Bayes clustering 
 
 The repository includes the `R` functions to implement the clustering procedures of the paper:
 
@@ -13,6 +13,10 @@ The `GBClust` package can be installed by running the following commands:
 devtools::install_github("tommasorigon/GBClust")
 ```
 
-* The file [`introduction.md`]() contains detailed instruction for reproducing the Figure 1 of the manuscript.
+In addition:
 
-* The file [`simulation1.md`]()
+* The file [`introduction.md`](tutorial/introduction.md) contains detailed instruction for reproducing Figure 1 of the [manuscript](https://arxiv.org/abs/2006.05451).
+
+* The file [`simulation1.md`](tutorial/simulation1.md) contains detailed instruction for reproducing the simulation study of **Section 7.1** of the [manuscript](https://arxiv.org/abs/2006.05451).
+
+* The file [`simulation2.md`](tutorial/simulation1.md) contains detailed instruction for reproducing the simulation study of **Section 7.2** of the [manuscript](https://arxiv.org/abs/2006.05451).

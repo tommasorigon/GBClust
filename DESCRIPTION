@@ -1,13 +1,13 @@
 Package: GBClust
 Type: Package
 Title: Clustering with Gibbs posteriors
-Version: 0.0.1
-Date: 2020-11-25
+Version: 0.0.2
+Date: 2020-11-27
 Author: Tommaso Rigon
 Maintainer: Tommaso Rigon <tommaso.rigon@unimib.it>
 Description: This package is an implementation of the generalized Bayes clustering methods described in the paper by Rigon, T., Herring, A. H. and Dunson, D. B. (2020), entitled "A generalized Bayes framework for probabilistic clustering’’
 Encoding: UTF-8
-License: GPL-3
+License: MIT + file LICENSE
 LazyData: TRUE
 Imports: Rcpp (>= 1.0.2), ggplot2, cluster
 LinkingTo: Rcpp, RcppArmadillo

@@ -2,7 +2,7 @@
 
 The repository includes the `R` functions to implement the clustering procedures of the paper:
 
-* Rigon, T., Herring, A. H. and Dunson, D. B. (2020+). [A generalized Bayes framework for probabilistic clustering](https://arxiv.org/abs/2006.05451).
+* Rigon, T., Herring, A. H. and Dunson, D. B. (2020). [A generalized Bayes framework for probabilistic clustering](https://arxiv.org/abs/2006.05451).
 
 The `GBClust` package can be installed by running the following commands:
 

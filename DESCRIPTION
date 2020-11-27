@@ -3,11 +3,14 @@ Type: Package
 Title: Generalized Bayes clustering
 Version: 0.0.2
 Date: 2020-11-27
-Description: This package is an implementation of several generalized Bayes clustering methods.
+Author: Blinded
+Maintainer: Blinded <blinded@gmail.com>
+Description: This panckage is an implementation of several generalized Bayes clustering methods.
 Encoding: UTF-8
 License: MIT + file LICENSE
 LazyData: TRUE
-Imports: Rcpp (>= 1.0.2), ggplot2, cluster
+Depends: R (>= 4.0.0)
+Imports: Rcpp (>= 1.0.5), RcppArmadillo(>= 0.10.1.2.0), ggplot2, cluster
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.1.1
 Suggests: knitr,

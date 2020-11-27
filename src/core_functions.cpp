@@ -1,3 +1,4 @@
+#include <RcppArmadillo.h>
 #include <RcppArmadilloExtensions/sample.h>
 
 // [[Rcpp::depends(RcppArmadillo)]]
@@ -503,7 +504,6 @@ List Gibbs_kbinary_C(int R, const arma::mat& X, arma::vec G, arma::vec freq, dou
   
   // Initialization
   int n = X.n_rows;
-  int d = X.n_cols;
   int K = freq.n_elem;
 
   // How many times the output is displayed

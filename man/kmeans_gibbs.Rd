@@ -42,5 +42,5 @@ kmeans_gibbs(
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-means algorithm. This function is complementary to \code{\link{kmeans2}}, which is used instead to get a point estimate.
+Perform the Gibbs-sampling for the k-means clustering. This function is complementary to \code{\link{kmeans2}}, which is used instead to get a point estimate.
 }

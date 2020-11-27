@@ -15,17 +15,17 @@ kbinary_gibbs(
 )
 }
 \arguments{
-\item{x}{binary matrix of the data}
+\item{x}{binary matrix of the data.}
 
-\item{k}{The number of clusters to be considered}
+\item{k}{The number of clusters to be considered.}
 
-\item{lambda}{Gibbs posterior tuning parameter}
+\item{lambda}{Gibbs posterior tuning parameter.}
 
-\item{R}{Number of MCMC samples after burn-in}
+\item{R}{Number of MCMC samples after burn-in.}
 
-\item{burn_in}{Number of MCMC samples to be discarded as burn-in period}
+\item{burn_in}{Number of MCMC samples to be discarded as burn-in period.}
 
-\item{nstart}{Number of random initializations for the k-means algorithm}
+\item{nstart}{Number of random initializations for the k-means algorithm.}
 
 \item{trace}{logical: if true, tracing information on the progress of the algorithm is produced.}
 }
@@ -38,5 +38,5 @@ kbinary_gibbs(
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-binary algorithm. This function is complementary to \code{\link{kbinary}}, which is used instead to get a point estimate.
+Perform the Gibbs-sampling for the k-binary clustering. This function is complementary to \code{\link{kbinary}}, which is used instead to get a point estimate.
 }

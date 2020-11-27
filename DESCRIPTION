@@ -5,7 +5,7 @@ Version: 0.0.2
 Date: 2020-11-27
 Author: Blinded
 Maintainer: Blinded <blinded@gmail.com>
-Description: This panckage is an implementation of several generalized Bayes clustering methods.
+Description: This package is an implementation of several generalized Bayes clustering methods.
 Encoding: UTF-8
 License: MIT + file LICENSE
 LazyData: TRUE

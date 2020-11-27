@@ -148,7 +148,7 @@ comp_medoids <- function(D, cluster) {
 
 #' K-dissimilarities (Minkowski) Gibbs sampling
 #'
-#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance. This function is complementary to \code{\link{kdiss}}, which is used instead to get a point estimate.
+#' Perform the Gibbs-sampling for the k-dissimilarities clustering using the Minkowski distance. This function is complementary to \code{\link{kdiss}}, which is used instead to get a point estimate.
 #'
 #' @param x numeric matrix of of the data.
 #' @param k The number of clusters to be considered.
@@ -244,15 +244,15 @@ kmeans2_select <- function(x, k_max, nstart = 1, algorithm = "kmeans") {
 #' Perform the k-means clustering on a data matrix.
 #'
 #' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
-#' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
-#' @param nstart Number of random sets that has been chosen
-#' @param algorithm The algorithm to be used
+#' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centers.
+#' @param nstart Number of random sets that has been chosen.
+#' @param algorithm The optimization algorithm to be used.
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
 #' \describe{
-#'   \item{\code{cluster}}{Labels of the clusters at convergence}
-#'   \item{\code{centers}}{The value of the centroids at convergence}
-#'   \item{\code{loss}}{Numeric value of the loss function at convergence}
+#'   \item{\code{cluster}}{Labels of the clusters at convergence.}
+#'   \item{\code{centers}}{The value of the centroids at convergence.}
+#'   \item{\code{loss}}{Numeric value of the loss function at convergence.}
 #' }
 #'
 #' @export
@@ -296,7 +296,7 @@ kmeans2 <- function(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE) {
 
 #' K-means Gibbs sampling
 #'
-#' Perform the Gibbs-sampling for the k-means algorithm. This function is complementary to \code{\link{kmeans2}}, which is used instead to get a point estimate.
+#' Perform the Gibbs-sampling for the k-means clustering. This function is complementary to \code{\link{kmeans2}}, which is used instead to get a point estimate.
 #'
 #' @param x A \code{n x d} numeric matrix of the data.
 #' @param k The number of clusters to be considered.
@@ -360,7 +360,7 @@ kmeans_gibbs <- function(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000, nst
 #'
 #' It displays the value of the loss function for various choices of k.
 #'
-#' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
+#' @param x binary matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
 #' @param k_max The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centers.
 #' @param nstart Number of random sets that has been chosen.
 #' @return It plots the loss function for different clustering solutions.
@@ -443,14 +443,14 @@ kbinary <- function(x, k, nstart = 1, trace = FALSE) {
 
 #' K-binary Gibbs sampling
 #'
-#' Perform the Gibbs-sampling for the k-binary algorithm. This function is complementary to \code{\link{kbinary}}, which is used instead to get a point estimate.
+#' Perform the Gibbs-sampling for the k-binary clustering. This function is complementary to \code{\link{kbinary}}, which is used instead to get a point estimate.
 #'
-#' @param x binary matrix of the data
-#' @param k The number of clusters to be considered
-#' @param lambda Gibbs posterior tuning parameter
-#' @param R Number of MCMC samples after burn-in
-#' @param burn_in Number of MCMC samples to be discarded as burn-in period
-#' @param nstart Number of random initializations for the k-means algorithm
+#' @param x binary matrix of the data.
+#' @param k The number of clusters to be considered.
+#' @param lambda Gibbs posterior tuning parameter.
+#' @param R Number of MCMC samples after burn-in.
+#' @param burn_in Number of MCMC samples to be discarded as burn-in period.
+#' @param nstart Number of random initializations for the k-means algorithm.
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
 #' \describe{

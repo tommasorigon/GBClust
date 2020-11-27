@@ -9,19 +9,19 @@ kmeans2(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE)
 \arguments{
 \item{x}{numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).}
 
-\item{k}{The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.}
+\item{k}{The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centers.}
 
-\item{nstart}{Number of random sets that has been chosen}
+\item{nstart}{Number of random sets that has been chosen.}
 
-\item{algorithm}{The algorithm to be used}
+\item{algorithm}{The optimization algorithm to be used.}
 
 \item{trace}{logical: if true, tracing information on the progress of the algorithm is produced.}
 }
 \value{
 \describe{
-  \item{\code{cluster}}{Labels of the clusters at convergence}
-  \item{\code{centers}}{The value of the centroids at convergence}
-  \item{\code{loss}}{Numeric value of the loss function at convergence}
+  \item{\code{cluster}}{Labels of the clusters at convergence.}
+  \item{\code{centers}}{The value of the centroids at convergence.}
+  \item{\code{loss}}{Numeric value of the loss function at convergence.}
 }
 }
 \description{

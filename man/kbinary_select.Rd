@@ -7,7 +7,7 @@
 kbinary_select(x, k_max, nstart = 1)
 }
 \arguments{
-\item{x}{numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).}
+\item{x}{binary matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).}
 
 \item{k_max}{The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centers.}
 

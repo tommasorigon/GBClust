@@ -8,7 +8,6 @@ library(gridExtra)
 
 rm(list = ls())
 
-
 # Oracle Similarity matrix ---------------------
 
 ProbsOracle <- function(x, mu, sigma2) {
@@ -54,7 +53,6 @@ RMSE_S <- numeric(3)
 VIG <- numeric(3)
 VIO <- numeric(3)
 VIHB <- numeric(3)
-
 
 # Scenario 1 -----------------------------
 
@@ -254,7 +252,6 @@ p2_hb <- ggplot(data = data_plot, aes(x = Var1, y = Var2, col = Cluster, shape =
 VIG[2] <- vi.dist(G0, fit$cluster, base = 2)
 VIO[2] <- vi.dist(G0, apply(ProbsO, 1, which.max), base = 2)
 VIHB[2] <- vi.dist(fit$cluster, Credible$c.horiz)
-
 
 # Scenario 3 ------------------------------
 

@@ -83,8 +83,7 @@ fit_kdiss <- kdiss(D_diss, H, nstart = 50)
 grid.arrange(p1_select_kmeans, p1_select_kdiss, ncol = 2)
 psim2_kdiss <- arrangeGrob(p1_select_kmeans, p1_select_kdiss, ncol = 2)
 
-
-# # Cluster visualization
+# Cluster visualization -------------------------
 
 ggplot(data = data.frame(dataset, Cluster = as.factor(fit_kmeans$cluster)), aes(x = X1, y = X2, col = Cluster)) +
   geom_point() +
@@ -97,7 +96,6 @@ ggplot(data = data.frame(dataset, Cluster = as.factor(fit_kdiss$cluster)), aes(x
   theme_light() +
   xlab("x") +
   ylab("y")
-
 
 # MCMC
 fit_gibbs_kmeans <- kmeans_gibbs(dataset, k = H, a_lambda = 0, b_lambda = 0, R = 5000, burn_in = 1000, trace = TRUE)

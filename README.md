@@ -14,3 +14,5 @@ devtools::install_github("tommasorigon/GBClust")
 ```
 
 The [full documentation](https://github.com/tommasorigon/GBClust/raw/master/GBClust_0.0.2.pdf) of the `GBClust` package is available in this repository. Moreover, the file [`introduction.md`](tutorial/introduction.md) contains detailed instruction for reproducing **Figure 1** of the paper.
+
+The files for reproducing the code of the paper are described in the [R_scripts_paper](https://github.com/tommasorigon/GBClust/tree/master/R_scripts_paper) folder. 

@@ -7,7 +7,7 @@
 kdiss_select(D, k_max, nstart = 1, method = "elbow")
 }
 \arguments{
-\item{D}{A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.}
+\item{D}{A \code{n x n} numeric matrix containing the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.}
 
 \item{k_max}{Maximum number of clusters to be considered.}
 

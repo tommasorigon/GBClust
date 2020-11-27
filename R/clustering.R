@@ -8,7 +8,7 @@
 #' @import ggplot2
 #' @useDynLib GBClust
 #'
-#' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
+#' @param D A \code{n x n} numeric matrix containing the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
 #' @param k_max Maximum number of clusters to be considered.
 #' @param nstart Number of random initializations.
 #' @param method The graph that will be displayed. Supported options are \code{method="elbow"}, which displays the loss function, or \code{method="silhouette"}. See \code{\link{silhouette}} for details about the latter.
@@ -52,12 +52,12 @@ kdiss_select <- function(D, k_max, nstart = 1, method = "elbow") {
 
 #' K-dissimilarities algorithm
 #'
-#' Perform the k-dissimilarities algorithm described.
+#' Perform the so-called k-dissimilarities algorithm.
 #'
-#' @param D A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
+#' @param D A \code{n x n} numeric matrix containing the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.
 #' @param k The number of clusters to be considered. See \code{\link{kdiss_select}} for selection criteria.
 #' @param nstart Number of random initializations.
-#' @param trace logical: if true, tracing information on the progress of the algorithm is produced
+#' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
 #' \describe{
 #'   \item{\code{cluster}}{Labels of the clusters at convergence}
@@ -239,9 +239,9 @@ kmeans2_select <- function(x, k_max, nstart = 1, algorithm = "kmeans") {
   p
 }
 
-#' K-Means^2 clustering
+#' K-Means clustering
 #'
-#' Perform k-means and k-means^2 on a data matrix.
+#' Perform the k-means clustering on a data matrix.
 #'
 #' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
 #' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
@@ -296,23 +296,23 @@ kmeans2 <- function(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE) {
 
 #' K-means clustering with uncertainty quantification
 #'
-#' Perform the Gibbs-sampling for the k-means algorithm.
+#' Perform the Gibbs-sampling for the k-means algorithm. This function is complementary to \code{\link{kmeans2}}, which is used instead to get a point estimate.
 #'
 #' @param x A \code{n x d} numeric matrix of the data.
 #' @param k The number of clusters to be considered.
-#' @param a_lambda Hyperparameter of the Gamma prior on the scale parameter
-#' @param b_lambda Hyperparameter of the Gamma prior on on the scale parameter
-#' @param R Number of MCMC samples after burn-in
-#' @param burn_in Number of MCMC samples to be discarded as burn-in period
-#' @param nstart Number of random initializations for the k-means algorithm
+#' @param a_lambda Hyperparameter of the Gamma prior on the scale parameter.
+#' @param b_lambda Hyperparameter of the Gamma prior on on the scale parameter.
+#' @param R Number of MCMC samples after burn-in.
+#' @param burn_in Number of MCMC samples to be discarded as burn-in period.
+#' @param nstart Number of random initializations for the k-means algorithm.
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
 #' \describe{
-#'   \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration}
-#'   \item{\code{lambda}}{A Rvector of numbers}
-#'   \item{\code{loss}}{A vector of numbers}
-#'   \item{\code{G_map}}{A vector of numbers}
-#'   \item{\code{loss_map}}{A vector of numbers}
+#'   \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration.}
+#'   \item{\code{lambda}}{A \code{R}-dimensional vector including the values of lambda for each MCMC iteration.}
+#'   \item{\code{loss}}{A \code{R}-dimensional vector including the values of the loss function for each MCMC iteration.}
+#'   \item{\code{G_map}}{Labels of the clusters at the lowest value of the posterior that has been computed.}
+#'   \item{\code{loss_map}}{Lowest value of the loss that has been computed.}
 #' }
 #'
 #' @export
@@ -358,7 +358,7 @@ kmeans_gibbs <- function(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000, nst
 
 #' Selection of the number of cluster for the k-binary algorithm
 #'
-#' It displays the value of the loss function for various choices of k
+#' It displays the value of the loss function for various choices of k.
 #'
 #' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
 #' @param k_max The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
@@ -441,12 +441,12 @@ kbinary <- function(x, k, nstart = 1, trace = FALSE) {
   return(best_fit)
 }
 
-#' K-dissimilarities algorithm with uncertainty quantification
+#' K-binary algorithm with uncertainty quantification
 #'
-#' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see \code{\link{dist}}.
+#' Perform the Gibbs-sampling for the k-binary algorithm. This function is complementary to \code{\link{kbinary}}, which is used instead to get a point estimate.
 #'
-#' @param x numeric matrix of of the data
-#' @param k The number of clusters to be considered.
+#' @param x binary matrix of the data
+#' @param k The number of clusters to be considered
 #' @param lambda Gibbs posterior tuning parameter
 #' @param R Number of MCMC samples after burn-in
 #' @param burn_in Number of MCMC samples to be discarded as burn-in period
@@ -454,11 +454,10 @@ kbinary <- function(x, k, nstart = 1, trace = FALSE) {
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
 #' \describe{
-#'   \item{\code{G}}{The letters of the alphabet}
-#'   \item{\code{lambda}}{A vector of numbers}
-#'   \item{\code{loss}}{A vector of numbers}
-#'   \item{\code{G_map}}{A vector of numbers}
-#'   \item{\code{loss_map}}{A vector of numbers}
+#'   \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration.}
+#'   \item{\code{loss}}{A \code{R}-dimensional vector including the values of the loss function for each MCMC iteration.}
+#'   \item{\code{G_map}}{Labels of the clusters at the lowest value of the posterior that has been computed.}
+#'   \item{\code{loss_map}}{Lowest value of the loss that has been computed.}
 #' }
 #'
 #' @export

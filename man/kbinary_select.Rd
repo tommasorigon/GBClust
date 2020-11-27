@@ -17,5 +17,5 @@ kbinary_select(x, k_max, nstart = 1)
 It plots the loss function for different clustering solutions
 }
 \description{
-It displays the value of the loss function for various choices of k
+It displays the value of the loss function for various choices of k.
 }

@@ -20,27 +20,27 @@ kmeans_gibbs(
 
 \item{k}{The number of clusters to be considered.}
 
-\item{a_lambda}{Hyperparameter of the Gamma prior on the scale parameter}
+\item{a_lambda}{Hyperparameter of the Gamma prior on the scale parameter.}
 
-\item{b_lambda}{Hyperparameter of the Gamma prior on on the scale parameter}
+\item{b_lambda}{Hyperparameter of the Gamma prior on on the scale parameter.}
 
-\item{R}{Number of MCMC samples after burn-in}
+\item{R}{Number of MCMC samples after burn-in.}
 
-\item{burn_in}{Number of MCMC samples to be discarded as burn-in period}
+\item{burn_in}{Number of MCMC samples to be discarded as burn-in period.}
 
-\item{nstart}{Number of random initializations for the k-means algorithm}
+\item{nstart}{Number of random initializations for the k-means algorithm.}
 
 \item{trace}{logical: if true, tracing information on the progress of the algorithm is produced.}
 }
 \value{
 \describe{
-  \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration}
-  \item{\code{lambda}}{A Rvector of numbers}
-  \item{\code{loss}}{A vector of numbers}
-  \item{\code{G_map}}{A vector of numbers}
-  \item{\code{loss_map}}{A vector of numbers}
+  \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration.}
+  \item{\code{lambda}}{A \code{R}-dimensional vector including the values of lambda for each MCMC iteration.}
+  \item{\code{loss}}{A \code{R}-dimensional vector including the values of the loss function for each MCMC iteration.}
+  \item{\code{G_map}}{Labels of the clusters at the lowest value of the posterior that has been computed.}
+  \item{\code{loss_map}}{Lowest value of the loss that has been computed.}
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-means algorithm.
+Perform the Gibbs-sampling for the k-means algorithm. This function is complementary to \code{\link{kmeans2}}, which is used instead to get a point estimate.
 }

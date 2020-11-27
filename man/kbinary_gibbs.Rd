@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{kbinary_gibbs}
 \alias{kbinary_gibbs}
-\title{K-dissimilarities algorithm with uncertainty quantification}
+\title{K-binary algorithm with uncertainty quantification}
 \usage{
 kbinary_gibbs(
   x,
@@ -15,9 +15,9 @@ kbinary_gibbs(
 )
 }
 \arguments{
-\item{x}{numeric matrix of of the data}
+\item{x}{binary matrix of the data}
 
-\item{k}{The number of clusters to be considered.}
+\item{k}{The number of clusters to be considered}
 
 \item{lambda}{Gibbs posterior tuning parameter}
 
@@ -31,13 +31,12 @@ kbinary_gibbs(
 }
 \value{
 \describe{
-  \item{\code{G}}{The letters of the alphabet}
-  \item{\code{lambda}}{A vector of numbers}
-  \item{\code{loss}}{A vector of numbers}
-  \item{\code{G_map}}{A vector of numbers}
-  \item{\code{loss_map}}{A vector of numbers}
+  \item{\code{G}}{A \code{R x n} matrix including the cluster labels for each MCMC iteration.}
+  \item{\code{loss}}{A \code{R}-dimensional vector including the values of the loss function for each MCMC iteration.}
+  \item{\code{G_map}}{Labels of the clusters at the lowest value of the posterior that has been computed.}
+  \item{\code{loss_map}}{Lowest value of the loss that has been computed.}
 }
 }
 \description{
-Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance; see \code{\link{dist}}.
+Perform the Gibbs-sampling for the k-binary algorithm. This function is complementary to \code{\link{kbinary}}, which is used instead to get a point estimate.
 }

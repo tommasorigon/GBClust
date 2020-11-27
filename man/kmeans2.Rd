@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{kmeans2}
 \alias{kmeans2}
-\title{K-Means^2 clustering}
+\title{K-Means clustering}
 \usage{
 kmeans2(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE)
 }
@@ -25,5 +25,5 @@ kmeans2(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE)
 }
 }
 \description{
-Perform k-means and k-means^2 on a data matrix.
+Perform the k-means clustering on a data matrix.
 }

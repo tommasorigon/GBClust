@@ -7,13 +7,13 @@
 kdiss(D, k, nstart = 1, trace = FALSE)
 }
 \arguments{
-\item{D}{A \code{n x n} numeric matrix with the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.}
+\item{D}{A \code{n x n} numeric matrix containing the dissimilarities, typically the output of \code{\link{dist}} or \code{\link{daisy}}.}
 
 \item{k}{The number of clusters to be considered. See \code{\link{kdiss_select}} for selection criteria.}
 
 \item{nstart}{Number of random initializations.}
 
-\item{trace}{logical: if true, tracing information on the progress of the algorithm is produced}
+\item{trace}{logical: if true, tracing information on the progress of the algorithm is produced.}
 }
 \value{
 \describe{
@@ -22,5 +22,5 @@ kdiss(D, k, nstart = 1, trace = FALSE)
 }
 }
 \description{
-Perform the k-dissimilarities algorithm described.
+Perform the so-called k-dissimilarities algorithm.
 }

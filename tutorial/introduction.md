@@ -10,10 +10,7 @@ As a preliminary step, we load on a clean environment all the required libraries
 library(GBClust)
 library(ggplot2)
 library(mcclust)
-library(mcclust.ext) # If unavailable, use: devtools::install_github(“sarawade/mcclust.ext”)
 library(mvtnorm)
-library(reshape2)
-library(gridExtra)
 
 rm(list = ls())
 ```

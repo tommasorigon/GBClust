@@ -1,6 +1,6 @@
-In this tutorial we describe the steps for obtaining Figure 1 of the paper Rigon, T., Herring, A. H. and Dunson, D. B. (2020+) entitled ``[A generalized Bayes framework for probabilistic clustering](https://arxiv.org/abs/2006.05451)''. The [documentation](https://github.com/tommasorigon/GBClust/raw/master/GBClust_0.0.2.pdf) of the package is available in this repository.
+In this tutorial we describe the steps for obtaining Figure 1 of the paper by [Rigon, T., Herring, A. H. and Dunson, D. B.](https://arxiv.org/abs/2006.05451). The [documentation](https://github.com/tommasorigon/GBClust/raw/master/GBClust_0.0.2.pdf) of the package is available in this repository.
 
-All the analyses are performed with a **MacBook Pro (macOS Big Sur, version 11.0.1)**, using a `R` version **4.0.3**. Notice that matrix decompositions involved in this code might differ across operating systems. 
+All the analyses are performed with a **MacBook Pro (macOS Big Sur, version 11.0.1)**, using a `R` version **4.0.3** and the `GBClust` package, which must be installed. Notice that matrix decompositions involved in this code might differ across operating systems. 
 
 The code described below requires the installation of the `GBClust` package, available in this repository. See the [README](https://github.com/tommasorigon/GBClust/blob/master/README.md) for instructions on the installation.
 
@@ -45,6 +45,8 @@ fit <- kmeans2(dataset, k = H, nstart = 10)
 fit_gibbs <- kmeans_gibbs(dataset, k = H, a_lambda = 0, b_lambda = 0, R = 5000, burn_in = 1000, trace = TRUE)
 ```
 
+The function `Miscl` compute the misclassification probabilities. The medoids are instead computed through the `comp_medoids` function of the `GBClust` package. 
+
 ```r
 Miscl <- function(S, cluster, medoids) {
   pr_miscl <- numeric(nrow(S))
@@ -61,6 +63,7 @@ D <- as.matrix(dist(dataset, method = "euclidean"))^2 # Dissimilarity matrix
 MisclGibbs_pr <- Miscl(SGibbs, fit$cluster, comp_medoids(D, fit$cluster))
 ```
 
+In figure `p1` we represent the simulated data. Colors represent the kmeans clustering solution.
 
 ```r
 p1 <- ggplot(data = data.frame(dataset, Cluster = as.factor(fit$cluster)), aes(x = X1, y = X2, col = Cluster, shape = Cluster)) +
@@ -76,6 +79,8 @@ ggsave("tutorial/plot1_1.png",width=8.8,height=4.4)
 ```
 
 ![](plot1_1.png)
+
+In figure `p2` we again represent the simulated data. Colors represent the misclassification probabilities.
 
 ```r
 # Misclassification probabilities

@@ -99,7 +99,7 @@ kdiss <- function(D, k, nstart = 1, trace = FALSE) {
   return(best_fit)
 }
 
-#' Computation of the medoids
+#' Compute the medoids
 #'
 #' Compute the medoids of a given clustering solution based on the corresponding dissimilarity matrix. 
 #'
@@ -361,9 +361,9 @@ kmeans_gibbs <- function(x, k, a_lambda, b_lambda, R = 1000, burn_in = 1000, nst
 #' It displays the value of the loss function for various choices of k.
 #'
 #' @param x numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
-#' @param k_max The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
-#' @param nstart Number of random sets that has been chosen
-#' @return It plots the loss function for different clustering solutions
+#' @param k_max The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centers.
+#' @param nstart Number of random sets that has been chosen.
+#' @return It plots the loss function for different clustering solutions.
 #'
 #' @export
 #'
@@ -392,14 +392,14 @@ kbinary_select <- function(x, k_max, nstart = 1) {
 #' Perform the so-called k-binary clustering algorithm, for obtaining groups when the data are binary observations. 
 #'
 #' @param x binary matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).
-#' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.
-#' @param nstart Number of random sets that has been chosen
+#' @param k The number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centers.
+#' @param nstart Number of random sets that has been chosen.
 #' @param trace logical: if true, tracing information on the progress of the algorithm is produced.
 #' @return
 #' \describe{
-#'   \item{\code{cluster}}{Labels of the clusters at convergence}
-#'   \item{\code{centers}}{The value of the centroids at convergence}
-#'   \item{\code{loss}}{Numeric value of the loss function at convergence}
+#'   \item{\code{cluster}}{Labels of the clusters at convergence.}
+#'   \item{\code{centers}}{The value of the centroids at convergence.}
+#'   \item{\code{loss}}{Numeric value of the loss function at convergence.}
 #' }
 #'
 #' @export

@@ -9,12 +9,12 @@ kbinary_select(x, k_max, nstart = 1)
 \arguments{
 \item{x}{numeric matrix of data, or an object that can be coerced to such a matrix (such as a numeric vector or a data frame with all numeric columns).}
 
-\item{k_max}{The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centres.}
+\item{k_max}{The maximum number of clusters to be considered. A random set of (distinct) rows in x is chosen as the initial centers.}
 
-\item{nstart}{Number of random sets that has been chosen}
+\item{nstart}{Number of random sets that has been chosen.}
 }
 \value{
-It plots the loss function for different clustering solutions
+It plots the loss function for different clustering solutions.
 }
 \description{
 It displays the value of the loss function for various choices of k.

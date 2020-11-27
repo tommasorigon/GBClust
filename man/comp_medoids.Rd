@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{comp_medoids}
 \alias{comp_medoids}
-\title{Computation of the medoids}
+\title{Compute the medoids}
 \usage{
 comp_medoids(D, cluster)
 }

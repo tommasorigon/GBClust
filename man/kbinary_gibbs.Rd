@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{kbinary_gibbs}
 \alias{kbinary_gibbs}
-\title{K-binary algorithm with uncertainty quantification}
+\title{K-binary Gibbs sampling}
 \usage{
 kbinary_gibbs(
   x,

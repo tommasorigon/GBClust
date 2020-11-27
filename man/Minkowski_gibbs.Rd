@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{Minkowski_gibbs}
 \alias{Minkowski_gibbs}
-\title{K-dissimilarities algorithm with uncertainty quantification}
+\title{K-dissimilarities (Minkowski) Gibbs sampling}
 \usage{
 Minkowski_gibbs(
   x,
@@ -17,11 +17,11 @@ Minkowski_gibbs(
 )
 }
 \arguments{
-\item{x}{numeric matrix of of the data}
+\item{x}{numeric matrix of of the data.}
 
 \item{k}{The number of clusters to be considered.}
 
-\item{p}{Power of the Minkowski distance}
+\item{p}{Power of the Minkowski distance.}
 
 \item{a_lambda}{Hyperparameter of the Gamma prior on the scale parameter. The default \code{a_lambda = 0} leads to an improper prior.}
 

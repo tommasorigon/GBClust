@@ -2,7 +2,7 @@
 % Please edit documentation in R/clustering.R
 \name{kmeans_gibbs}
 \alias{kmeans_gibbs}
-\title{K-means clustering with uncertainty quantification}
+\title{K-means Gibbs sampling}
 \usage{
 kmeans_gibbs(
   x,

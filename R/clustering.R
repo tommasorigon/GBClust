@@ -146,13 +146,13 @@ comp_medoids <- function(D, cluster) {
 }
 
 
-#' K-dissimilarities algorithm with uncertainty quantification
+#' K-dissimilarities (Minkowski) Gibbs sampling
 #'
 #' Perform the Gibbs-sampling for the k-dissimilarities algorithm using the Minkowski distance. This function is complementary to \code{\link{kdiss}}, which is used instead to get a point estimate.
 #'
-#' @param x numeric matrix of of the data
+#' @param x numeric matrix of of the data.
 #' @param k The number of clusters to be considered.
-#' @param p Power of the Minkowski distance
+#' @param p Power of the Minkowski distance.
 #' @param a_lambda Hyperparameter of the Gamma prior on the scale parameter. The default \code{a_lambda = 0} leads to an improper prior.
 #' @param b_lambda Hyperparameter of the Gamma prior on on the scale parameter. The default \code{a_lambda = 0} leads to an improper prior.
 #' @param R Number of MCMC samples after burn-in.
@@ -294,7 +294,7 @@ kmeans2 <- function(x, k, nstart = 1, algorithm = "kmeans", trace = FALSE) {
   return(best_fit)
 }
 
-#' K-means clustering with uncertainty quantification
+#' K-means Gibbs sampling
 #'
 #' Perform the Gibbs-sampling for the k-means algorithm. This function is complementary to \code{\link{kmeans2}}, which is used instead to get a point estimate.
 #'
@@ -441,7 +441,7 @@ kbinary <- function(x, k, nstart = 1, trace = FALSE) {
   return(best_fit)
 }
 
-#' K-binary algorithm with uncertainty quantification
+#' K-binary Gibbs sampling
 #'
 #' Perform the Gibbs-sampling for the k-binary algorithm. This function is complementary to \code{\link{kbinary}}, which is used instead to get a point estimate.
 #'

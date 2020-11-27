@@ -38,7 +38,7 @@ for (h in 1:H) {
   dataset <- rbind(dataset, rmvnorm(n = n / H, mean = mu[h, ], sigma = sigma2 * diag(d)))
 }
 
-# ESTIMATION --------------------------
+# Estimation --------------------------
 
 D <- as.matrix(dist(dataset, method = "euclidean"))^2
 fit <- kmeans2(dataset, k = H, nstart = 10)

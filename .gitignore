@@ -9,3 +9,4 @@ tutorial/.DS_Store
 GBClust.Rproj
 .Rbuildignore
 tutorial/introduction.html
+.DS_Store
